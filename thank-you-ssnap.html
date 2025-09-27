@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thanks — Secret Shield Pro</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+           margin: 0; min-height: 100vh; display: grid; place-items: center; background: Canvas; color: CanvasText; }
+    .card { width: min(720px, 92vw); border: 1px solid rgb(230 230 230 / 60%); border-radius: 16px; padding: 26px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    p  { margin: 8px 0; line-height: 1.5; }
+    code { background: rgb(240 240 240 / 60%); padding: 6px 10px; border-radius: 8px; font-size: 18px; }
+    .muted { color: #666; font-size: 14px; }
+    .row { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+    button { padding: 10px 12px; border: none; border-radius: 10px; cursor: pointer; background: #1f6feb; color: #fff; }
+  </style>
+  <script>
+    // Ensure ?ssnap=CODE is present so the extension auto-unlocks.
+    (function(){
+      const CODE = "SSNAP-PRO-2025";
+      const url = new URL(window.location.href);
+      const current = url.searchParams.get("ssnap");
+      if (current !== CODE) {
+        url.searchParams.set("ssnap", CODE);
+        // Use replace() so back button doesn't show the pre-redirect URL twice.
+        window.location.replace(url.toString());
+        return;
+      }
+      // Expose code in the UI as a fallback for manual paste.
+      window._SSNAP_CODE = CODE;
+    })();
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 Thanks for purchasing <strong>Secret Shield Pro</strong>!</h1>
+    <p>Your browser should unlock Pro automatically in a second.</p>
+    <p class="muted">If it doesn’t, copy this code and paste it in the extension → Options → License.</p>
+    <div class="row">
+      <code id="code">SSNAP-PRO-2025</code>
+      <button id="copy">Copy</button>
+    </div>
+    <p class="muted">Tip: If the code doesn’t work immediately, try refreshing the page you had open or restarting the browser once.</p>
+  </div>
+
+  <script>
+    document.getElementById("copy").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window._SSNAP_CODE || "SSNAP-PRO-2025");
+        const btn = document.getElementById("copy");
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = old, 1500);
+      } catch(e) {
+        alert("Could not copy to clipboard, please copy manually.");
+      }
+    });
+  </script>
+  <noscript>
+    <p style="text-align:center" class="muted">JavaScript is disabled — your code is: SSNAP-PRO-2025</p>
+  </noscript>
+</body>
+</html>
